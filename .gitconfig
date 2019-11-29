@@ -1,0 +1,13 @@
+[user]
+	name = Robin Bolscher
+	email = robinbolscher@gmail.com
+[core]
+	excludesfile = /Users/robinbolscher/.gitignore_global
+	autocrlf = input
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
