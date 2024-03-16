@@ -4,12 +4,14 @@ source config.sh
 # This gets the location of the current script
 DIR=$(cd $(dirname $0) && pwd)
 
-# Loop dot files and copy them here
+git pull
+
+# Loop dot files and copy to local
 for dotfile in "${dotfiles[@]}";do
- cp "${HOME}/${dotfile}" "${DIR}"
+ cp "${DIR}/${dotfile}" "${HOME}"
 done
 
-# Loop dot directories and copy them here
+# Loop dot directories and copy to local
 for dotdir in "${dotdirs[@]}";do
- cp -r "${HOME}/${dotfile}" "${DIR}"
+ cp -r "${DIR}/${dotfile}" "${HOME}"
 done
