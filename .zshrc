@@ -17,7 +17,7 @@ HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 setopt EXTENDED_HISTORY
 
 # Share history across multiple zsh sessions
-setopt SHARE_HISTORY
+# setopt SHARE_HISTORY
 
 # Append to history
 setopt APPEND_HISTORY
@@ -36,10 +36,6 @@ setopt HIST_FIND_NO_DUPS
 
 # Removes blank lines from history
 setopt HIST_REDUCE_BLANKS
-
-# Enable zsh correction
-setopt CORRECT
-setopt CORRECT_ALL
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -99,7 +95,7 @@ setopt CORRECT_ALL
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git kubectl zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,17 +124,61 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="open -a 'Visual Studio Code' ~/.zshrc"
 alias ohmyzsh="open -a 'Visual Studio Code' ~/.oh-my-zsh"
-alias hc="open -a WebStorm ~hc"
-alias hc="open -a WebStorm ~hcz"
-alias sa="open -a WebStorm ~sa"
-alias nz="open -a WebStorm ~nz"
 
-hash -d dev=~/Development
-hash -d apps=~/Development/apps
-hash -d hc=~/Development/homey-client
-hash -d hcz=~/Development/homey-client-zigbee
-hash -d nz=~/Development/node-zigbee
-hash -d sa=~/Development/homey-smartphone-app-v2z
+hash -d dev=~/development
+hash -d apps=~/development/apps
+hash -d hc=~/development/homey-client
+hash -d hcz=~/development/homey-client-zigbee
+hash -d nz=~/development/node-zigbee
+hash -d sa=~/development/homey-smartphone-app-v2
+hash -d sign=~/Google\ Drive/Shared\ drives/Sysadmin/Homey\ \&\ Homey\ Pro/sign
 
 # Auto cd to enable hash
 setopt AUTO_CD
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+# Enable direnv
+eval "$(direnv hook zsh)"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export CPATH=/opt/homebrew/include
+export LIBRARY_PATH=/opt/homebrew/lib
+
+PROMPT='%{$fg[yellow]%}[%*] '$PROMPT
+# bun completions
+[ -s "/Users/robinbolscher/.bun/_bun" ] && source "/Users/robinbolscher/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
