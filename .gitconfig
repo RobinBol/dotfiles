@@ -1,27 +1,31 @@
 [user]
-        name = Robin Bolscher
-        email = robinbolscher@gmail.com
+	name = Robin Bolscher
+	email = robinbolscher@gmail.com
 [color]
-        ui = true
+	ui = true
 [core]
-        excludesfile = /Users/robinbolscher/.gitignore
-        editor = code --wait
+	excludesfile = /Users/robinbolscher/.gitignore
+	editor = code --wait
 [pull]
-        ff = only
-        rebase = false
+	ff = only
+	rebase = false
 [filter "lfs"]
-        required = true
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-        process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [diff]
-        tool = vscode
+	tool = vscode
 [difftool "vscode"]
-        cmd = code --wait --diff $LOCAL $REMOTE
+	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
   tool = vscode
-        ff = no
+	ff = no
 [mergetool "vscode"]
   cmd = code --wait $MERGED
 [commit]
-        template = /Users/robinbolscher/.stCommitMsg
+	template = /Users/robinbolscher/.stCommitMsg
+[safe]
+	directory = /Users/robinbolscher/development/homey-matter/third_party/connectedhomeip
+	directory = /Users/robinbolscher/development/homey-matter/third_party/connectedhomeip
+	directory = /Users/robinbolscher/development/homey-matter/third_party/connectedhomeip
