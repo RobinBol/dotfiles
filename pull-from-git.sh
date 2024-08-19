@@ -8,10 +8,12 @@ git pull
 
 # Loop dot files and copy to local
 for dotfile in "${dotfiles[@]}";do
+ echo "Copying ${DIR}/${dotfile} to ${HOME}"
  cp "${DIR}/${dotfile}" "${HOME}"
 done
 
 # Loop dot directories and copy to local
 for dotdir in "${dotdirs[@]}";do
- cp -r "${DIR}/${dotfile}" "${HOME}"
+ echo "Copying ${DIR}/${dotdir} to ${HOME}"
+ cp -r "${DIR}/${dotdir}" "${HOME}"
 done
