@@ -22,23 +22,23 @@
 #            - exec: code .
 
 ---
-name: Homey Pro (Early 2023)
+name: Project Energy - Energy API
 windows:
   - tabs:
-      - title: "node-homey-pro"
+      - title: "athom-cloud-energy-api (build watch)"
         layout:
           split_direction: horizontal
           panes:
-            - split_direction: vertical
-              panes:
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-core
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
-                  commands:
-                    - exec: npm run build:watch
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-core
-                  commands:
-                    - exec: npm run build:watch
-            - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
+            - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-energy-api
               commands:
-                - exec: npm run build && npm run build:docker && npm run serve:docker-macos
+                - exec: npm run build:watch
+      - title: "kubernetes"
+        layout:
+          split_direction: vertical
+          panes:
+            - cwd: /Users/robinbolscher/development/project-energy
+              commands:
+                - exec: k9s
+            - cwd: /Users/robinbolscher/development/project-energy
+              commands:
+                - exec: sleep 60 && sudo kubefwd svc -n energy-api

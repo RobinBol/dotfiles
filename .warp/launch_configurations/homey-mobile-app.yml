@@ -22,23 +22,20 @@
 #            - exec: code .
 
 ---
-name: Homey Pro (Early 2023)
+name: Homey Mobile App
 windows:
   - tabs:
-      - title: "node-homey-pro"
+      - title: "homey-mobile-app (run)"
         layout:
           split_direction: horizontal
           panes:
-            - split_direction: vertical
-              panes:
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-core
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
-                  commands:
-                    - exec: npm run build:watch
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-core
-                  commands:
-                    - exec: npm run build:watch
-            - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
+            - cwd: /Users/robinbolscher/development/homey-mobile-app
               commands:
-                - exec: npm run build && npm run build:docker && npm run serve:docker-macos
+                - exec: yarn run build && yarn react-native run-ios --simulator "iPhone 15"
+      - title: "metro"
+        layout:
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/robinbolscher/development/homey-mobile-app
+              commands:
+                - exec: yarn react-native start
