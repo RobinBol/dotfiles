@@ -25,38 +25,30 @@
 name: Project Energy - Homey Pro (Early 2023)
 windows:
   - tabs:
-      - title: "node-homey-core (build watch)"
+      - title: "node-homey-core (watch)"
         layout:
           split_direction: horizontal
           panes:
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-core
               commands:
                 - exec: npm ci --ignore-scripts && npm run build:watch
-      - title: "node-homey-core (test watch)"
-        layout:
-          split_direction: horizontal
-          panes:
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-core
               commands:
-                - exec: sleep 30 && npm run test:watch
-      - title: "node-homey-pro (build watch)"
+                - exec: sleep 20 && npm run test:watch
+      - title: "node-homey-pro (watch)"
         layout:
           split_direction: horizontal
           panes:
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
               commands:
-                - exec: sleep 30 && direnv allow; npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
-      - title: "node-homey-pro (test watch)"
-        layout:
-          split_direction: horizontal
-          panes:
+                - exec: sleep 20 && direnv allow; npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
               commands:
-                - exec: sleep 90 && npm run test:watch
+                - exec: sleep 60 && npm run test:watch
       - title: "node-homey-pro (run)"
         layout:
           split_direction: horizontal
           panes:
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
               commands:
-                - exec: sleep 90 && direnv allow; npm run build:docker && npm run serve:docker-macos
+                - exec: sleep 60 && direnv allow; npm run build:docker && npm run serve:docker-macos
