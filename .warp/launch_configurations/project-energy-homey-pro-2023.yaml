@@ -29,26 +29,32 @@ windows:
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-core
-              commands:
-                - exec: npm ci --ignore-scripts && npm run build:watch
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-core
+            - cwd: ~/development/project-energy/node-homey-core
               commands:
                 - exec: sleep 20 && npm run test:watch
+            - cwd: ~/development/project-energy/node-homey-core
+              commands:
+                - exec: npm ci --ignore-scripts && npm run build:watch
+            - cwd: ~/development/project-energy/node-homey-core
+              commands:
+                - exec: npm run lint:watch
       - title: "node-homey-pro (watch)"
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
-              commands:
-                - exec: sleep 20 && direnv allow; npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
+            - cwd: ~/development/project-energy/node-homey-pro
               commands:
                 - exec: sleep 60 && npm run test:watch
+            - cwd: ~/development/project-energy/node-homey-pro
+              commands:
+                - exec: sleep 20 && direnv allow; npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
+            - cwd: ~/development/project-energy/node-homey-pro
+              commands:
+                - exec: npm run lint:watch
       - title: "node-homey-pro (run)"
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
+            - cwd: ~/development/project-energy/node-homey-pro
               commands:
                 - exec: sleep 60 && direnv allow; npm run build:docker && npm run serve:docker-macos
