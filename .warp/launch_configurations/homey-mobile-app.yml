@@ -38,4 +38,4 @@ windows:
           panes:
             - cwd: /Users/robinbolscher/development/homey-mobile-app
               commands:
-                - exec: npx react-native start
+                - exec: npm run start
