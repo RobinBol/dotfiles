@@ -38,4 +38,4 @@ windows:
           panes:
             - cwd: /Users/robinbolscher/development/homey-mobile-app
               commands:
-                - exec: npm run start
+                - exec: sleep 60 && npm run start

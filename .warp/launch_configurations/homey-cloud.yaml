@@ -50,7 +50,6 @@ windows:
                 - exec: direnv allow && kubectl delete statefulset athom-cloud-homey; kustomize build apps/local-dev/ | envsubst | kubectl apply -f -
       - title: "logging"
         layout:
-          panes:
-            - cwd: /Users/robinbolscher/development/homey-cloud
-              commands:
-                - exec: kubectl logs -f athom-cloud-homey-0
+          cwd: /Users/robinbolscher/development/homey-cloud
+          commands:
+            - exec: kubectl logs -f athom-cloud-homey-0
