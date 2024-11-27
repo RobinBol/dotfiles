@@ -31,7 +31,7 @@ windows:
           panes:
             - cwd: /Users/robinbolscher/development/homey-cloud/athom-cloud-homey
               commands:
-                - exec: npm run tsc:watch
+                - exec: npm run build:watch
             - cwd: /Users/robinbolscher/development/homey-cloud/athom-cloud-homey
               commands:
                 - exec: npm run build:docker
@@ -47,7 +47,7 @@ windows:
                 - exec: sleep 60 && sudo kubefwd svc -n default
             - cwd: /Users/robinbolscher/development/homey-cloud/homey-cloud-gitops
               commands:
-                - exec: direnv allow && kubectl delete statefulset athom-cloud-homey; kustomize build apps/local-dev/ | envsubst | kubectl apply -f -
+                - exec: direnv allow && kubectl delete statefulset athom-cloud-homey; ./apply-local-dev.sh
       - title: "logging"
         layout:
           cwd: /Users/robinbolscher/development/homey-cloud
