@@ -37,7 +37,7 @@ windows:
                 - exec: npm ci --ignore-scripts && npm run build:watch
             - cwd: ~/development/project-energy/node-homey-core
               commands:
-                - exec: npm run lint:watch
+                - exec: sleep 20 && npm run lint:watch
       - title: "node-homey-pro (watch)"
         layout:
           split_direction: horizontal

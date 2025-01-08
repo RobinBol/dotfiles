@@ -31,7 +31,7 @@ windows:
           panes:
             - cwd: /Users/robinbolscher/development/homey-mobile-app
               commands:
-                - exec: yarn run build && yarn react-native run-ios --simulator "iPhone 15"
+                - exec: yarn run build && yarn react-native run-ios
       - title: "metro"
         layout:
           split_direction: horizontal

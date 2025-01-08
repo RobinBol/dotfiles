@@ -52,4 +52,4 @@ windows:
         layout:
           cwd: /Users/robinbolscher/development/homey-cloud
           commands:
-            - exec: kubectl logs -f athom-cloud-homey-0
+            - exec: sleep 60 && kubectl logs -f athom-cloud-homey-0
