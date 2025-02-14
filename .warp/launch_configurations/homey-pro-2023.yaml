@@ -32,13 +32,11 @@ windows:
             - split_direction: vertical
               panes:
                 - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-core
-                - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
                   commands:
-                    - exec: npm run build:watch
+                    - exec: npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
                 - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-core
                   commands:
-                    - exec: npm run build:watch
+                    - exec: npm ci --ignore-scripts && npm run build:watch
             - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
               commands:
-                - exec: npm run build && npm run build:docker && npm run serve:docker-macos
+                - exec: sleep 30 && npm run build:docker && npm run serve:docker-macos

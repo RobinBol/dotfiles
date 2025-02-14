@@ -60,7 +60,7 @@ windows:
                 - exec: sleep 60 && sudo kubefwd svc -n default
             - cwd: /Users/robinbolscher/development/homey-cloud/homey-cloud-gitops
               commands:
-                - exec: direnv allow && kubectl delete statefulset athom-cloud-homey; ./apply-local-dev-fast-modules.sh
+                - exec: direnv allow && kubectl delete pods -l app=athom-cloud-homey; ./apply-local-dev-fast-modules.sh
       - title: "logging"
         layout:
           cwd: /Users/robinbolscher/development/homey-cloud
