@@ -65,4 +65,4 @@ windows:
         layout:
           cwd: /Users/robinbolscher/development/homey-cloud
           commands:
-            - exec: sleep 60 && kubectl logs --prefix --timestamps -f -l app=athom-cloud-homey --all-containers=true
+            - exec: sleep 60 && stern athom-cloud-homey --all-namespaces
