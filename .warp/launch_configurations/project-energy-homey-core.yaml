@@ -34,13 +34,13 @@ windows:
           panes:
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-core
               commands:
-                - exec: npm ci --ignore-scripts && npm run build && npm run build:watch
+                - exec: pnpm install --ignore-scripts && npm run build && npm run build:watch
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
               commands:
-                - exec: npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
+                - exec: pnpm install --ignore-scripts && npm link ../node-homey-core && npm run build:watch
             - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-homey
               commands:
-                - exec: npm ci --ignore-scripts && sleep 20 && npm link ../node-homey-core && npm run build:watch
+                - exec: pnpm install --ignore-scripts && sleep 20 && npm link ../node-homey-core && npm run build:watch
       - title: "run (pro)"
         layout:
           split_direction: horizontal
