@@ -54,7 +54,7 @@ windows:
           panes:
             - cwd: /Users/robinbolscher/development/project-energy
               commands:
-                - exec: sleep 50 && stern athom-cloud-homey --all-namespaces
+                - exec: sleep 50 && stern athom-cloud-homey --template='{{color .PodColor .PodName}} {{ .Message }}{{"\n"}}'
             - cwd: /Users/robinbolscher/development/project-energy/homey-cloud-gitops
               commands:
                 - exec: direnv allow && kubectl delete pods -l app=athom-cloud-homey; sleep 40 && ./apply-local-dev-fast-modules.sh && sudo kubefwd svc -n default
