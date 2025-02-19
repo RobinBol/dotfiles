@@ -33,10 +33,10 @@ windows:
               panes:
                 - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
                   commands:
-                    - exec: pnpm install --ignore-scripts && npm link ../node-homey-core && npm run build:watch
+                    - exec: npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
                 - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-core
                   commands:
-                    - exec: pnpm install --ignore-scripts && npm run build:watch
+                    - exec: npm ci --ignore-scripts && npm run build:watch
             - cwd: /Users/robinbolscher/development/homey-pro-2023/node-homey-pro
               commands:
                 - exec: sleep 30 && npm run build:docker && npm run serve:docker-macos
