@@ -65,4 +65,4 @@ windows:
         layout:
           cwd: /Users/robinbolscher/development/homey-cloud
           commands:
-            - exec: sleep 60 && stern athom-cloud-homey --template='{{color .PodColor .PodName}} {{ .Message }}{{"\n"}}'
+            - exec: sleep 60 && stern athom-cloud-homey --timestamps --template='{{color .PodColor .PodName}} {{ .Message }}{{"\n"}}'
