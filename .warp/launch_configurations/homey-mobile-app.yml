@@ -25,17 +25,13 @@
 name: Homey Mobile App
 windows:
   - tabs:
-      - title: "homey-mobile-app (run)"
+      - title: "homey-mobile-app"
         layout:
-          split_direction: horizontal
+          split_direction: vertical
           panes:
             - cwd: /Users/robinbolscher/development/homey-mobile-app
               commands:
-                - exec: yarn run build && yarn react-native run-ios
-      - title: "metro"
-        layout:
-          split_direction: horizontal
-          panes:
+                - exec: yarn build && yarn react-native run-ios
             - cwd: /Users/robinbolscher/development/homey-mobile-app
               commands:
-                - exec: npm run start
+                - exec: yarn start -- --reset-cache

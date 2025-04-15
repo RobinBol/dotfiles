@@ -25,26 +25,30 @@
 name: Homey Cloud
 windows:
   - tabs:
-      - title: "node-homey-core (watch)"
+      - title: "build/lint"
         layout:
           split_direction: horizontal
           panes:
-            - cwd: ~/development/homey-cloud/node-homey-core
+            - cwd: /Users/robinbolscher/development/homey-cloud
+              commands:
+                - exec: npm run build:watch:core
+            - cwd: /Users/robinbolscher/development/homey-cloud
+              commands:
+                - exec: npm run build:watch:cloud
+      - title: "test"
+        layout:
+          split_direction: horizontal
+          panes:
+            - cwd: /Users/robinbolscher/development/homey-cloud/node-homey-core
               commands:
                 - exec: sleep 20 && npm run test:watch
-            - cwd: ~/development/homey-cloud/node-homey-core
+            - cwd: /Users/robinbolscher/development/homey-cloud/athom-cloud-homey
               commands:
-                - exec: npm ci --ignore-scripts && npm run build:watch
-            - cwd: ~/development/homey-cloud/node-homey-core
-              commands:
-                - exec: sleep 20 && npm run lint:watch
+                - exec: sleep 20 && npm run test:watch
       - title: "athom-cloud-homey"
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/robinbolscher/development/homey-cloud/athom-cloud-homey
-              commands:
-                - exec: sleep 20 && npm link ../node-homey-core && npm run build:watch
             - cwd: /Users/robinbolscher/development/homey-cloud/athom-cloud-homey
               commands:
                 - exec: npm run build:docker

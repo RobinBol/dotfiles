@@ -2,19 +2,19 @@
 name: Project Energy - Homey Core/Pro/Cloud
 windows:
   - tabs:
-      - title: "lint"
+      - title: "build/lint"
         layout:
           split_direction: horizontal
           panes:
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-core
+            - cwd: /Users/robinbolscher/development/project-energy
               commands:
-                - exec: sleep 20 && npm run lint:watch
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
+                - exec: npm run build:watch:core
+            - cwd: /Users/robinbolscher/development/project-energy
               commands:
-                - exec: sleep 20 && npm run lint:watch
-            - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-homey
+                - exec: npm run build:watch:pro
+            - cwd: /Users/robinbolscher/development/project-energy
               commands:
-                - exec: sleep 20 && npm run lint:watch
+                - exec: npm run build:watch:cloud
       - title: "test"
         layout:
           split_direction: horizontal
@@ -28,33 +28,20 @@ windows:
             - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-homey
               commands:
                 - exec: sleep 20 && npm run test:watch
-      - title: "build"
-        layout:
-          split_direction: horizontal
-          panes:
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-core
-              commands:
-                - exec: npm ci --ignore-scripts && npm run build && npm run build:watch
-            - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
-              commands:
-                - exec: npm ci --ignore-scripts && npm link ../node-homey-core && npm run build:watch
-            - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-homey
-              commands:
-                - exec: npm ci --ignore-scripts && sleep 20 && npm link ../node-homey-core && npm run build:watch
       - title: "run (pro)"
         layout:
           split_direction: horizontal
           panes:
             - cwd: /Users/robinbolscher/development/project-energy/node-homey-pro
               commands:
-                - exec: sleep 40 && direnv allow && npm run serve:docker-macos
+                - exec: sleep 20 && direnv allow && npm run serve:docker-macos
       - title: "run (cloud)"
         layout:
           split_direction: vertical
           panes:
             - cwd: /Users/robinbolscher/development/project-energy
               commands:
-                - exec: sleep 50 && stern athom-cloud-homey --timestamps --template='{{color .PodColor .PodName}} {{ .Message }}{{"\n"}}'
+                - exec: sleep 20 && stern athom-cloud-homey --timestamps --template='{{color .PodColor .PodName}} {{ .Message }}{{"\n"}}'
             - cwd: /Users/robinbolscher/development/project-energy/homey-cloud-gitops
               commands:
-                - exec: direnv allow && kubectl delete pods -l app=athom-cloud-homey; sleep 40 && ./apply-local-dev-fast-modules.sh && sudo kubefwd svc -n default
+                - exec: direnv allow && kubectl delete pods -l app=athom-cloud-homey; sleep 20 && ./apply-local-dev-fast-modules.sh && sudo kubefwd svc -n default

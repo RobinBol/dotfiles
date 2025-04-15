@@ -168,6 +168,8 @@ load-nvmrc
 # Enable direnv
 eval "$(direnv hook zsh)"
 
+source /Users/robinbolscher/development/athom-cloud-gitops/athom-cloud-shell-functions.sh
+
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
