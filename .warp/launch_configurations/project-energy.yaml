@@ -53,4 +53,4 @@ windows:
                 - exec: sleep 60 && sudo kubefwd svc -n energy-api
             - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-gitops
               commands:
-                - exec: direnv allow; kubectl delete deployment energy-api -n energy-api; kustomize build apps/energy-api/local-dev | envsubst | kubectl apply -f-
+                - exec: direnv allow; kubectl --context orbstack delete deployment energy-api -n energy-api; kustomize build apps/energy-api/local-dev | envsubst | kubectl --context orbstack apply -f-

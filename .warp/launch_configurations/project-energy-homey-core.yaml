@@ -44,4 +44,4 @@ windows:
                 - exec: sleep 20 && stern athom-cloud-homey --timestamps --template='{{color .PodColor .PodName}} {{ .Message }}{{"\n"}}'
             - cwd: /Users/robinbolscher/development/project-energy/homey-cloud-gitops
               commands:
-                - exec: direnv allow && kubectl delete pods -l app=athom-cloud-homey; sleep 20 && ./apply-local-dev-fast-modules.sh && sudo kubefwd svc -n default
+                - exec: direnv allow && kubectl --context orbstack delete pods -l app=athom-cloud-homey; sleep 20 && ./apply-local-dev-fast-modules.sh && sudo kubefwd svc -n default
