@@ -32,6 +32,9 @@ windows:
             - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-energy-api
               commands:
                 - exec: npm run build:watch
+            - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-gitops
+              commands:
+                - exec: kustomize build apps/energy-api/local-dev | envsubst | kubectl apply -f-
       - title: "kubernetes"
         layout:
           split_direction: vertical
