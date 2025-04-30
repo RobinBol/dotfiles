@@ -32,9 +32,28 @@ windows:
             - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-energy-api
               commands:
                 - exec: npm run build:watch
-            - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-gitops
+      - title: "port forwarding"
+        layout:
+          split_direction: vertical
+          panes:
+            - cwd: /Users/robinbolscher/development/project-energy
               commands:
-                - exec: kustomize build apps/energy-api/local-dev | envsubst | kubectl apply -f-
+              # Forward traffic on http://energy-api:3000 to the pod
+                - exec: sleep 20 && sudo kubefwd svc -n energy-api
+            - cwd: /Users/robinbolscher/development/project-energy
+              commands:
+              # Forward traffic on http://localhost:3000 to http://energy-api:3000
+                - exec: sleep 10 && kubectl port-forward -n energy-api svc/energy-api 3000:3000
+            - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-gitops/apps/energy-api
+              commands:
+                - exec: kubectl delete pod -l app=energy-api -n energy-api && direnv allow && kustomize build ./local-dev | envsubst | kubectl apply -f-
+      - title: "logging"
+        layout:
+          split_direction: vertical
+          panes:
+            - cwd: /Users/robinbolscher/development/project-energy
+              commands:
+                - exec: stern -n energy-api -l app=energy-api --template='{{color .PodColor .PodName}} {{ .Message }}{{"\n"}}'
       - title: "kubernetes"
         layout:
           split_direction: vertical
@@ -42,6 +61,3 @@ windows:
             - cwd: /Users/robinbolscher/development/project-energy
               commands:
                 - exec: k9s
-            - cwd: /Users/robinbolscher/development/project-energy
-              commands:
-                - exec: sleep 60 && sudo kubefwd svc -n energy-api
