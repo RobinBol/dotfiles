@@ -43,7 +43,7 @@ windows:
             - cwd: /Users/robinbolscher/development/project-energy
               commands:
               # Forward traffic on http://localhost:3000 to http://energy-api:3000
-                - exec: sleep 10 && kubectl port-forward -n energy-api svc/energy-api 3000:3000
+                - exec: sleep 10 && nodemon --exec kubectl port-forward -n energy-api svc/energy-api 3000:3000
             - cwd: /Users/robinbolscher/development/project-energy/athom-cloud-gitops/apps/energy-api
               commands:
                 - exec: kubectl delete pod -l app=energy-api -n energy-api && direnv allow && kustomize build ./local-dev | envsubst | kubectl apply -f-
